@@ -1,0 +1,103 @@
+<p id="notice"><%= notice %></p>
+
+<div class="">
+
+</div>
+
+<div class="row">
+  <div class="col s12" style="padding: 2%"  >
+
+      <div class="col s2 offset-s2">
+        <%= image_tag poster @movie.poster_path %>
+      </div>
+
+      <div class="col s8">
+        <h1><%= @movie.title %></h1>
+        <div class="controls">
+            <div>
+              <div class="user-rating">Rating</div>
+              <i class="material-icons">format_list_bulleted</i>
+              <i class="material-icons">sentiment_very_satisfied</i>
+              <i class="material-icons">watch_later</i>
+              <i class="material-icons">star</i>
+
+              <i class="material-icons">play_arrow</i>
+            </div>
+        </div>
+
+        <div class="overview">
+          <h5>
+            Overview
+          </h5>
+          <p><%= @movie.overview %></p>
+        </div>
+        User Rating  : <%= rating_for @movie, 'quality', disable_after_rate: false %>
+      </div>
+  </div>
+
+
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#test1">Comments</a></li>
+      <li class="tab col s3"><a  href="#test2">Reviews</a></li>
+      <li class="tab col s3"><a  href="#test3">Cast and Crew</a></li>
+      <li class="tab col s3"><a  href="#test4">Trailer</a></li>
+      <li class="tab col s3"><a  href="#test5">Poster</a></li>
+    </ul>
+  </div>
+  <div id="test1" class="col s12">
+    <div class="">
+      <div class="card">
+        <% if authenticated_user %>
+            <%= render 'comments/form', comment: @movie.comments.new %>
+        <% end %>
+
+        <% @movie.comments.each do |comment| %>
+            <%= render comment%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="test2" class="col s12">
+    <div class="">
+      <div class="card">
+        <% if authenticated_user %>
+            <%= render 'reviews/form', review: @movie.reviews.new %>
+        <% end %>
+
+        <% @movie.reviews.each do |review| %>
+            <%= render review%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="test3" class="col s12">
+  <div class="card">
+    Under Construction
+  </div>
+</div>
+<div id="test4" class="col s12">
+  <div class="card">
+    Under Construction
+  </div>
+</div>
+
+<div id="test5" class="col s12">
+  <div class="card">
+    Under Construction
+  </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $('ul.tabs').tabs();
+    });
+</script>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

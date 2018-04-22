@@ -1,0 +1,30 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">Movie Portal</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><%= link_to 'Browse Movies', movies_path %></li>
+      <li><%= link_to "Tech Sign Out", destroy_technician_session_path, method: :delete %></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+
+<script>
+
+</script>

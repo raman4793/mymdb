@@ -1,0 +1,24 @@
+<%= form_for(conversation) do |f| %>
+  <% if conversation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
+
+      <ul>
+      <% conversation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="name" type="text">
+        <label for="first_name" class="">Name</label>
+      </div>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

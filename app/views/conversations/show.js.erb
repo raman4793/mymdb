@@ -1,0 +1,5 @@
+$('#messages-areas').html('');
+$('#messages-areas').html('<%= j render 'conversations/convo', conversation: @conversation %>');
+
+$('#char-row').html('');
+$('#chat-row').html('<%= j render 'conversations/convo', conversation: @conversation %>');

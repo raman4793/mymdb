@@ -1,0 +1,67 @@
+<div class="box box-primary direct-chat direct-chat-primary">
+  <div class="box-header with-border">
+    <% if authenticated_user == conversation.sendable %>
+      <% other = conversation.recipientable %>
+    <% else %>
+      <% other = conversation.sendable %>
+    <% end %>
+    <h3 class="box-title"><%= other.name %></h3>
+
+
+    <div class="card" style="margin-top: -0.1%">
+      <div class="card-content white-text scroll-box">
+        <span class="card-title" style=""><h3 style="color: black">Chat with <%= other.name %></h3></span>
+        <div style="padding: 3%">
+
+          <div id="all-messages">
+            <% messages = conversation.messages %>
+            <% messages.each do |message| %>
+                <%= render message %>
+            <% end %>
+          </div>
+
+
+          <div class="col s12">
+            <div class="chip light-blue">
+              <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-1.png" alt="Contact Person">
+              Nothing much bro
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-action">
+
+      </div>
+    </div>
+
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body" >
+    <!-- Conversations are loaded here -->
+    <div class="direct-chat-messages">
+
+
+
+
+
+
+    </div>
+    <!--/.direct-chat-messages-->
+
+    <!-- Contacts are loaded here -->
+
+    <!-- /.direct-chat-pane -->
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    <%= render 'messages/form', message: conversation.messages.new %>
+  </div>
+  <!-- /.box-footer-->
+</div>
+<!--/.direct-chat -->

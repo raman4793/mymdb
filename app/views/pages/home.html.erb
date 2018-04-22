@@ -1,0 +1,7 @@
+<% if current_user %>
+    <%= render 'pages/user_home' %>
+<% elsif current_technician %>
+    <%= render 'pages/technician_home' %>
+<% else %>
+    <%= render 'normal_home' %>
+<% end %>

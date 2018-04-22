@@ -1,0 +1,31 @@
+<% if message.sendable %>
+    <% if authenticated_user!=message.sendable %>
+        <div class="direct-chat-msg">
+          <div class="col s12">
+            <div class="chip">
+              <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-1.png" alt="Contact Person">
+              <%= message.content %> <br>
+              <span style="font-size: 0.8em"><%= message.created_at.strftime("%B %d, %Y") %></span>
+            </div>
+          </div>
+        </div>
+    <% else %>
+        <div class="direct-chat-msg">
+          <div class="col s12 right-align">
+            <div class="chip">
+              <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-1.png" alt="Contact Person">
+              <%= message.content %> <br>
+              <span style="font-size: 0.8em"><%= message.created_at.strftime("%B %d, %Y") %></span>
+            </div>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+
+<!--<div class="col s12 right-align">-->
+  <!--<div class="chip">-->
+    <!--<img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-1.png" alt="Contact Person">-->
+    <!--Hey man What up <br>-->
+    <!--<span style="font-size: 0.8em">February 11, 2016</span>-->
+  <!--</div>-->
+<!--</div>-->

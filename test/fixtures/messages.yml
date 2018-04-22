@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  conversation: one
+  sendable: one
+  sendable_type: Sendable
+
+two:
+  content: MyText
+  conversation: two
+  sendable: two
+  sendable_type: Sendable

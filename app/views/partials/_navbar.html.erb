@@ -1,0 +1,7 @@
+<% if current_user %>
+    <%= render 'partials/user_navbar' %>
+<% elsif current_technician %>
+    <%= render 'partials/technician_navbar' %>
+<% else %>
+    <%= render 'partials/normal_navbar' %>
+<% end %>
