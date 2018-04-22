@@ -72,6 +72,7 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'auto_complete'
 
 gem 'rails-ujs'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -86,7 +87,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'faker'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
