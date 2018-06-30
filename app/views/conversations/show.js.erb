@@ -1,0 +1,6 @@
+$('#message-name').text('<%= "Chat with #{@conversation.other(current_user).name}" %>')
+$('#messages-areas').html('');
+$('#messages-areas').html('<%= j render 'conversations/convo', conversation: @conversation %>');
+
+$('#char-row').html('');
+$('#chat-row').html('<%= j render 'conversations/convo', conversation: @conversation %>');

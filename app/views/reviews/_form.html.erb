@@ -1,0 +1,10 @@
+<div style="padding: 1%">
+  <%= simple_form_for review do |f| %>
+      <%= f.input :movie_id, :as => :hidden, :input_html => { :value => review.movie.id} %>
+      <%= f.input :reviewer_id, :as => :hidden, :input_html => { :value => authenticated_user.id} %>
+      <%= f.input :reviewer_type, :as => :hidden, :input_html => { :value => authenticated_user.class.name} %>
+
+      <%= f.input :content %>
+      <%= f.button :submit %>
+  <% end %>
+</div>

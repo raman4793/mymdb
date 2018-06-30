@@ -1,0 +1,28 @@
+<% if review.reviewer %>
+    <div class="col s12">
+      <!--<h2 class="header">Horizontal Card</h2>-->
+      <div class="card horizontal">
+        <div style="padding: 1%">
+
+          <div class="card-image">
+            <span>
+             <p> <%= image_tag 'male1.png', width: '64px', height: '64px' %><%= review.reviewer.name %></p>
+            </span>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p><%= review.content %></p>
+            </div>
+            <div class="card-action">
+              <% if authenticated_user %>
+                  <%= render 'comments/form', comment: review.comments.new %>
+                  <%= render 'likes/form', likeable: review %>
+              <% end %>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

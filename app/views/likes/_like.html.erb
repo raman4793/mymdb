@@ -1,0 +1,17 @@
+<div style="padding: 1%">
+  <%= simple_form_for like do |f| %>
+      <%= f.input :liker_id, :as => :hidden, :input_html => { :value => authenticated_user.id} %>
+      <%= f.input :liker_type, :as => :hidden, :input_html => { :value => authenticated_user.class.name} %>
+
+      <%= f.input :likeable_id, :as => :hidden, :input_html => { :value => like.likeable.id} %>
+      <%= f.input :likeable_type, :as => :hidden, :input_html => { :value => like.likeable.class.name} %>
+
+      <a id="submit_link_<%= "#{like.likeable_type}_#{like.likeable_id}" %>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_up</i></a>
+  <% end %>
+</div>
+<script>
+    $('#submit_link_<%= "#{like.likeable_type}_#{like.likeable_id}" %>').click(function () {
+        $(this).parent('form').submit();
+        $(this).parent().hide();
+    })
+</script>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  commentable: one
+  commentable_type: Commentable
+  commenter: one
+  commenter_type: Commenter
+
+two:
+  content: MyText
+  commentable: two
+  commentable_type: Commentable
+  commenter: two
+  commenter_type: Commenter

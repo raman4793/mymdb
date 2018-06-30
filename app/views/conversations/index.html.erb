@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col s12">
+    <nav class="red">
+      <div class="nav-wrapper">
+        <div class="left col s12 m5 l5">
+          <ul>
+
+            <li><a href="#!" class="email-type" style="font-size: larger" id="message-name">Mailbox</a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="col s12 m7 l7 hide-on-med-and-down">
+
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="col s12">
+
+    <div id="email-list" class="col s10 m4 l4 card-panel z-depth-1">
+      <ul class="collection">
+
+        <% @conversations.each do |conversation| %>
+
+          <li id="conversation-<%= conversation.id %>" class="collection-item avatar email-unread" onclick="loadMessage('<%= conversation_url(conversation) %>', <%= conversation.id %>);">
+
+            <span class="email-title"><%= image_tag 'avatar-1.png', width: 48, height: 48 %> <%= conversation.other(current_user).name %></span>
+            <p class="truncate grey-text ultra-small"><%= conversation.messages.last.content %></p>
+
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+    <div id="email-details" class="col s12 m7 l7 card-panel">
+      <div id="messages-areas">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<li class="collection-item avatar selected">-->
+<!--  <img src="../../images/avatar/avatar-3.png" alt="" class="circle">-->
+<!--  <span class="email-title">Andy Brown</span>-->
+<!--  <p class="truncate grey-text ultra-small">Hay Joe, we have next project for this summer.</p>-->
+<!--  <a href="#!" class="secondary-content email-time">-->
+<!--    <i class="material-icons attach-file">attach_file</i>-->
+<!--    <span class="grey-text ultra-small">12:10 am</span>-->
+<!--  </a>-->
+<!--</li>-->
+
+<script>
+  function loadMessage(url, id) {
+      $.ajax({
+          url: url
+      }).done(function(){
+
+          $('#conversation-'+id).removeClass("email-unread");
+          $('#conversation-'+id).addClass("selected");
+      })
+  }
+</script>

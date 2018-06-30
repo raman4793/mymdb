@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s6 offset-s3">
+    <%= search_form_for @search do |f| %>
+      <div class="field">
+        <%= f.text_field :name_cont, placeholder: 'Enter Movie Title' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= paginate @technicians %>
+<div class="row">
+  <% @technicians.each do |technician| %>
+    <div class="col s12 m4 l4">
+      <%= render technician %>
+    </div>
+  <% end %>
+</div>

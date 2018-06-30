@@ -1,0 +1,12 @@
+<div style="padding: 1%">
+  <%= simple_form_for comment do |f| %>
+      <%= f.input :commenter_id, :as => :hidden, :input_html => { :value => authenticated_user.id} %>
+      <%= f.input :commenter_type, :as => :hidden, :input_html => { :value => authenticated_user.class.name} %>
+
+      <%= f.input :commentable_id, :as => :hidden, :input_html => { :value => comment.commentable_id} %>
+      <%= f.input :commentable_type, :as => :hidden, :input_html => { :value => comment.commentable.class.name} %>
+
+      <%= f.input :content %>
+      <%= f.button :submit %>
+  <% end %>
+</div>

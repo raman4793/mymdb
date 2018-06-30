@@ -1,0 +1,44 @@
+<div class="box box-primary direct-chat direct-chat-primary">
+  <div class="box-header with-border">
+    <% if authenticated_user == conversation.sendable %>
+      <% other = conversation.recipientable %>
+    <% else %>
+      <% other = conversation.sendable %>
+    <% end %>
+
+
+    <div class="card" style="margin-top: -0.1%">
+      <div class="card-content white-text scroll-box">
+        <span class="card-title" style=""></span>
+        <div style="padding: 3%">
+
+          <div id="all-messages">
+            <% messages = conversation.messages %>
+            <% messages.each do |message| %>
+                <%= render message %>
+            <% end %>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body" >
+    <!-- Conversations are loaded here -->
+    <div class="direct-chat-messages">
+
+
+
+
+
+
+    </div>
+
+  </div>
+  <div class="box-footer">
+    <%= render 'messages/form', message: conversation.messages.new %>
+  </div>
+</div>

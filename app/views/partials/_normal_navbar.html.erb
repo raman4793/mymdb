@@ -1,0 +1,15 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="<%= root_path %>" class="brand-logo center">Movie Portal</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a href="<%= root_path %>"></a></li>
+    </ul>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><%= link_to 'Find technicians', technicians_path %></li>
+      <li><%= link_to 'Find users', users_path %></li>
+      <li><%= link_to 'Browse Movies', movies_path %></li>
+      <li><%= link_to "User Sign In", new_user_session_path %></li>
+    </ul>
+  </div>
+</nav>

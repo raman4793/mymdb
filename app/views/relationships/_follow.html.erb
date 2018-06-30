@@ -1,0 +1,5 @@
+<%= form_tag url_for(:controller => 'relationships', :action => 'create'), method: :post do %>
+    <%= hidden_field_tag :followable_type, @user.class.name %>
+    <%= hidden_field_tag :followable_id, @user.id %>
+    <%= submit_tag  'Follow' %>
+<% end %>

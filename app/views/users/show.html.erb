@@ -1,0 +1,264 @@
+<section id="content">
+  <!--start container-->
+  <div class="">
+    <div id="profile-page" class="section">
+      <!-- profile-page-header -->
+      <div id="profile-page-header" class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="<%= image_path @user.background_pic %>" alt="user background">
+        </div>
+        <figure class="card-profile-image">
+          <img src="<%= image_path @user.profile_pic %>" alt="profile image" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">
+        </figure>
+        <div class="card-content">
+          <div class="row pt-2">
+            <div class="col s12 m3 offset-m2">
+              <h4 class="card-title grey-text text-darken-4"><%= @user.name %></h4>
+              <p class="medium-small grey-text"></p>
+            </div>
+            <div class="col s12 m2 center-align">
+
+            </div>
+            <div class="col s12 m2 center-align">
+
+            </div>
+            <div class="col s12 m2 center-align">
+
+            </div>
+            <% if current_user && current_user != @user %>
+              <div class="col s12 m1 right-align">
+                <%= render 'relationships/form', user: @user %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-reveal">
+          <p>
+                    <span class="card-title grey-text text-darken-4"><%= @user.name %>
+                      <i class="material-icons right">close</i>
+                    </span>
+            <span>
+                      <i class="material-icons cyan-text text-darken-2">perm_identity</i><%= @user.created_at %></span>
+          </p>
+          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">perm_phone_msg</i> +1 (612) 222 8989</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">email</i> mail@domain.com</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">cake</i> 18th June 1990</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">airplanemode_active</i> BAR - AUS</p>
+        </div>
+      </div>
+      <!--/ profile-page-header -->
+      <!-- profile-page-content -->
+      <div id="profile-page-content" class="row">
+        <!-- profile-page-sidebar-->
+        <div id="profile-page-sidebar" class="col s12 m4">
+          <!-- Profile About  -->
+          <div class="card cyan">
+            <div class="card-content white-text">
+              <span class="card-title">About Me!</span>
+              <p>I am a very user. I am good at reviewing movies and i am very big movie buff. I certainly identify myself as a movie enthusiast.</p>
+            </div>
+          </div>
+          <!-- Profile About  -->
+          <div class="card red accent-2">
+            <div class="card-content white-text center-align">
+              <p class="card-title">
+                <i class="material-icons">group_add</i> <%= @user.followers.count %></p>
+              <p>Followers</p>
+            </div>
+          </div>
+          <!-- Profile About  -->
+        </div>
+        <!-- profile-page-sidebar-->
+        <!-- profile-page-wall -->
+        <div id="profile-page-wall" class="col s12 m8">
+          <!-- profile-page-wall-posts -->
+          <div id="profile-page-wall-posts" class="row">
+            <div class="col s12">
+              <!-- medium -->
+              <div id="profile-page-wall-post" class="card">
+                <div class="card-profile-title">
+                  <div class="row">
+                    <div class="col s1">
+                      <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-7.png" alt="" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan">
+                    </div>
+                    <div class="col s10">
+                      <p class="grey-text text-darken-4 margin">John Doe</p>
+                      <span class="grey-text text-darken-1 ultra-small">Shared publicly - 26 Jun 2015</span>
+                    </div>
+                    <div class="col s1 right-align">
+                      <i class="material-icons">expand_more</i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <p>I am a very simple wall post. I am good at containing <a href="#">#small</a> bits of <a href="#">#information</a>. I require little more information to use effectively.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image profile-medium">
+                  <img src="https://pixinvent.com/materialize-material-design-admin-template/images/gallary/26.png" alt="sample" class="responsive-img profile-post-image profile-medium">
+                  <span class="card-title text-shadow">Card Title</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action row">
+                  <div class="col s4 card-action-share">
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">thumb_up</i>
+                    </a>
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">share</i>
+                    </a>
+                  </div>
+                  <div class="input-field col s8 margin">
+                    <input id="profile-comments" type="text" class="validate margin">
+                    <label for="profile-comments" class="">Comments</label>
+                  </div>
+                </div>
+              </div>
+              <!-- medium video -->
+              <div id="profile-page-wall-post" class="card">
+                <div class="card-profile-title">
+                  <div class="row">
+                    <div class="col s1">
+                      <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-7.png" alt="" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan">
+                    </div>
+                    <div class="col s10">
+                      <p class="grey-text text-darken-4 margin">John Doe</p>
+                      <span class="grey-text text-darken-1 ultra-small">Shared publicly - 26 Jun 2015</span>
+                    </div>
+                    <div class="col s1 right-align">
+                      <i class="material-icons">expand_more</i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <p>I am a very simple wall post. I am good at containing <a href="#">#small</a> bits of <a href="#">#information</a>. I require little more information to use effectively.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image profile-medium">
+                  <div class="video-container no-controls">
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/10r9ozshGVE" frameborder="0" allowfullscreen=""></iframe>
+                  </div>
+                  <span class="card-title text-shadow">Card Title</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action row">
+                  <div class="col s4 card-action-share">
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">thumb_up</i>
+                    </a>
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">share</i>
+                    </a>
+                  </div>
+                  <div class="input-field col s8 margin">
+                    <input id="profile-comments" type="text" class="validate margin">
+                    <label for="profile-comments" class="">Comments</label>
+                  </div>
+                </div>
+              </div>
+              <!-- small -->
+              <div id="profile-page-wall-post" class="card">
+                <div class="card-profile-title">
+                  <div class="row">
+                    <div class="col s1">
+                      <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-7.png" alt="" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan">
+                    </div>
+                    <div class="col s10">
+                      <p class="grey-text text-darken-4 margin">John Doe</p>
+                      <span class="grey-text text-darken-1 ultra-small">Shared publicly - 26 Jun 2015</span>
+                    </div>
+                    <div class="col s1 right-align">
+                      <i class="material-icons">expand_more</i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <p>I am a very simple wall post. I am good at containing <a href="#">#small</a> bits of <a href="#">#information</a>. I require little more information to use effectively.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image profile-small">
+                  <img src="https://pixinvent.com/materialize-material-design-admin-template/images/gallary/20.png" alt="sample" class="responsive-img profile-post-image">
+                  <span class="card-title text-shadow">Card Title</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action row">
+                  <div class="col s4 card-action-share">
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">thumb_up</i>
+                    </a>
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">share</i>
+                    </a>
+                  </div>
+                  <div class="input-field col s8 margin">
+                    <input id="profile-comments" type="text" class="validate">
+                    <label for="profile-comments" class="">Comments</label>
+                  </div>
+                </div>
+              </div>
+              <!-- small -->
+              <div id="profile-page-wall-post" class="card">
+                <div class="card-profile-title">
+                  <div class="row">
+                    <div class="col s1">
+                      <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-7.png" alt="" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan">
+                    </div>
+                    <div class="col s10">
+                      <p class="grey-text text-darken-4 margin">John Doe</p>
+                      <span class="grey-text text-darken-1 ultra-small">Shared publicly - 26 Jun 2015</span>
+                    </div>
+                    <div class="col s1 right-align">
+                      <i class="material-icons">expand_more</i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <p>I am a very simple wall post. I am good at containing <a href="#">#small</a> bits of <a href="#">#information</a>. I require little more information to use effectively.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image profile-large">
+                  <img src="https://pixinvent.com/materialize-material-design-admin-template/images/gallary/3.png" alt="sample" class="responsive-img profile-post-image">
+                  <span class="card-title text-shadow">Card Title</span>
+                </div>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action row">
+                  <div class="col s4 card-action-share">
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">thumb_up</i>
+                    </a>
+                    <a href="#">
+                      <i class="material-icons grey-text text-darken-1">share</i>
+                    </a>
+                  </div>
+                  <div class="input-field col s8 margin">
+                    <input id="profile-comments" type="text" class="validate">
+                    <label for="profile-comments" class="">Comments</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/ profile-page-wall-posts -->
+        </div>
+        <!--/ profile-page-wall -->
+      </div>
+    </div>
+  </div>
+</section>

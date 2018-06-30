@@ -1,0 +1,31 @@
+
+<div class="row">
+  <div class="col s12" style="padding: 2%"  >
+
+    <div class="col s2 offset-s2">
+      <%= image_tag poster movie.poster_path %>
+    </div>
+
+    <div class="col s8">
+      <h1><%= movie.title %></h1>
+      <div class="controls">
+        <div>
+          <div class="user-rating">Rating</div>
+          <div><i class="material-icons">format_list_bulleted</i></div>
+          <div><i class="material-icons">sentiment_very_satisfied</i></div>
+          <div><i class="material-icons">watch_later</i></div>
+          <div><i class="material-icons">star</i></div>
+
+          <i class="material-icons">play_arrow</i>
+        </div>
+      </div>
+
+      <div class="overview">
+        <h5>
+          Overview
+        </h5>
+        <p><%= movie.overview %></p>
+      </div>
+    </div>
+  </div>
+</div>

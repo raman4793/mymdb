@@ -1,0 +1,160 @@
+<section id="content">
+  <!--start container-->
+  <div class="">
+    <div id="profile-page" class="section">
+      <!-- profile-page-header -->
+      <div id="profile-page-header" class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="https://pixinvent.com/materialize-material-design-admin-template/images/gallary/23.png" alt="user background">
+        </div>
+        <figure class="card-profile-image">
+          <img src="https://pixinvent.com/materialize-material-design-admin-template/images/avatar/avatar-7.png" alt="profile image" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">
+        </figure>
+        <div class="card-content">
+          <div class="row pt-2">
+            <div class="col s12 m3 offset-m2">
+              <h4 class="card-title grey-text text-darken-4"><%= @technician.name %></h4>
+              <p class="medium-small grey-text"></p>
+            </div>
+            <div class="col s12 m2 center-align">
+
+            </div>
+            <div class="col s12 m2 center-align">
+
+            </div>
+            <div class="col s12 m2 center-align">
+
+            </div>
+            <div class="col s12 m1 right-align">
+
+            </div>
+          </div>
+        </div>
+        <div class="card-reveal">
+          <p>
+                    <span class="card-title grey-text text-darken-4"><%= @technician.name %>
+                      <i class="material-icons right">close</i>
+                    </span>
+            <span>
+                      <i class="material-icons cyan-text text-darken-2">perm_identity</i><%= @technician.created_at %></span>
+          </p>
+          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">perm_phone_msg</i> +1 (612) 222 8989</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">email</i> mail@domain.com</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">cake</i> 18th June 1990</p>
+          <p>
+            <i class="material-icons cyan-text text-darken-2">airplanemode_active</i> BAR - AUS</p>
+        </div>
+      </div>
+      <!--/ profile-page-header -->
+      <!-- profile-page-content -->
+      <div id="profile-page-content" class="row">
+        <!-- profile-page-sidebar-->
+        <div id="profile-page-sidebar" class="col s12 m4">
+          <!-- Profile About  -->
+          <div class="card cyan">
+            <div class="card-content white-text">
+              <span class="card-title">About Me!</span>
+              <p>I am a
+                <% @technician.roles.each do |role| %>
+                  <%= role.name %>,
+                <% end %>
+              </p>
+
+            </div>
+          </div>
+          <!-- Profile About  -->
+          <!-- Profile About Details  -->
+          <ul id="profile-page-about-details" class="collection z-depth-1">
+            <li class="collection-item">
+              <div class="row">
+                <div class="col s5">
+                  <i class="material-icons left">card_travel</i> Project</div>
+                <div class="col s7 right-align">ABC Name</div>
+              </div>
+            </li>
+            <li class="collection-item">
+              <div class="row">
+                <div class="col s5">
+                  <i class="material-icons left">poll</i> Skills</div>
+                <div class="col s7 right-align">HTML, CSS</div>
+              </div>
+            </li>
+            <li class="collection-item">
+              <div class="row">
+                <div class="col s5">
+                  <i class="material-icons left">domain</i> Lives in</div>
+                <div class="col s7 right-align">NY, USA</div>
+              </div>
+            </li>
+            <li class="collection-item">
+              <div class="row">
+                <div class="col s5">
+                  <i class="material-icons left">cake</i> Birth date</div>
+                <div class="col s7 right-align">18th June, 1991</div>
+              </div>
+            </li>
+          </ul>
+          <!--/ Profile About Details  -->
+          <!-- Profile About  -->
+          <div class="card red accent-2">
+            <div class="card-content white-text center-align">
+              <p class="card-title">
+                <i class="material-icons"></i>Worked in <%= @movies_worked.count %></p>
+              <p>movies</p>
+            </div>
+          </div>
+          <!-- Profile About  -->
+
+        </div>
+        <!-- profile-page-sidebar-->
+        <!-- profile-page-wall -->
+        <div id="profile-page-wall" class="col s12 m8">
+          <!-- profile-page-wall-share -->
+          <div id="profile-page-wall-share" class="row">
+
+          </div>
+          <!--/ profile-page-wall-share -->
+          <!-- profile-page-wall-posts -->
+          <div id="profile-page-wall-posts" class="row">
+            <div class="col s12">
+              <!-- medium -->
+              <% @movies_worked.each do |worked| %>
+
+                <div id="profile-page-wall-post" class="card">
+
+                  <div class="card-image profile-medium">
+                    <img src="<%= poster(worked.movie.poster_path) %>" alt="sample" class="responsive-img profile-post-image profile-medium">
+                    <span class="card-title text-shadow"><%= link_to worked.movie.title, movie_path(worked.movie) %></span>
+                  </div>
+                  <div class="card-content">
+                    <h5>Worked as <%= worked.role.name %></h5>
+                    <p>
+                      <%= worked.movie.overview %>
+                    </p>
+                  </div>
+                  <% if current_user %>
+                    <div class="card-action row">
+                      <div class="col s4 card-action-share">
+                        <%= render 'likes/form', likeable: worked.movie %>
+                      </div>
+                      <div class="input-field col s8 margin">
+                        <%= render 'comments/form', comment: worked.movie.comments.new %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+              <% end %>
+            </div>
+          </div>
+          <!--/ profile-page-wall-posts -->
+        </div>
+        <!--/ profile-page-wall -->
+      </div>
+    </div>
+  </div>
+</section>

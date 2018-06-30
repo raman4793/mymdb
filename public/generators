@@ -1,0 +1,33 @@
+rails g devise:install
+
+rails g active_admin:install
+
+rails g devise User
+rails g devise Technician
+
+rails g model Movie title:string thumbnail:string trailer:string synopsis:text release_date:date adult:boolean backdrop_path:string
+poster_path:string budget:float homepage:string revenue:float runtime:integer status:string tagline:string
+
+rails g model Tag value:string
+
+rails g model Movies_Tags movie:references tag:references
+
+rails g model Companies name:string
+
+rails g model movies_company movie:references company:references
+
+rails g model review reviewer_type:string reviewer_id:integer movie:references content:text
+
+rails g model role name:string
+
+rails g model technician_role technician:references role:references
+
+rails g model movie_technician technician:references role:references movie:references
+
+rails g model comment content:text commentable:references{polymorphic} commenter:references{polymorphic}
+
+rails g model like likeable:references{polymorphic} liker:references{polymorphic}
+
+rails g model conversation sendable:references{polymorphic} recipientable:references{polymorphic}
+
+rails g model message content:text conversation:references sendable:references{polymorphic}

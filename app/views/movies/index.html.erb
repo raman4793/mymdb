@@ -1,0 +1,116 @@
+<div style="padding: 2%">
+
+
+  <div class="row">
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <%= search_form_for @search do |f| %>
+            <div class="field">
+              <%= f.text_field :title_cont, placeholder: 'Enter Movie Title' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="item-posts" class="row">
+      <div class="item-sizer"></div>
+      <% @movies.each do |movie| %>
+
+          <div class="col s3">
+
+            <div class="item product">
+              <div class="card" style="max-height: 465px">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <a href="#" class="btn-floating btn-large btn-price waves-effect waves-light teal accent-4">
+
+                    <div class="chart-<%=movie.id%>" data-percent="<%=movie.rating%>">
+
+                    </div>
+                  </a>
+                  <a href="#">
+                    <%= image_tag poster(movie.poster_path) %>
+                  </a>
+                </div>
+                <ul class="card-action-buttons">
+                  <li>
+                    <a data-id="<%= movie.id %>" href="#modal1" class="btn-floating waves-effect waves-light cyan" onclick="newReview(<%= movie.id %>)">
+                      <i class="material-icons">add</i>
+                    </a>
+                  </li>
+                  <li>
+                    <%= render 'likes/form', likeable: movie %>
+
+                  </li>
+                  <li>
+                    <a class="btn-floating waves-effect waves-light deep-orange accent-2">
+                      <i class="material-icons activator">info_outline</i>
+                    </a>
+                  </li>
+                </ul>
+                <div class="card-content">
+                  <div class="row">
+                    <div class="col s12">
+                      <p class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4"><b><%= link_to movie.title, movie_url(movie) %></b></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">
+                        <i class="material-icons right">close</i>
+                        <h5><b><%= link_to movie.title, movie_url(movie) %></b></h5><br>
+                        <span style="font-size: 0.8em; color: #ee6e73"><%= movie.release_date.strftime("%B %d, %Y") %></span>
+                      </span>
+                  <p><%= movie.overview  %></p>
+                </div>
+              </div>
+              <script>
+                  $(function() {
+                      $('.chart-<%=movie.id%>').easyPieChart({
+                          // The color of the curcular bar. You can pass either a css valid color string like rgb, rgba hex or string colors. But you can also pass a function that accepts the current percentage as a value to return a dynamically generated color.
+                          barColor: 'blue',
+                          // The color of the track for the bar, false to disable rendering.
+                          trackColor: '#f2f2f2',
+                          // The color of the scale lines, false to disable rendering.
+                          scaleColor: '#dfe0e0',
+                          // Defines how the ending of the bar line looks like. Possible values are: butt, round and square.
+                          lineCap: 'round',
+                          // Width of the bar line in px.
+                          lineWidth: 8,
+                          // Size of the pie chart in px. It will always be a square.
+                          size: 65,
+                          // Time in milliseconds for a eased animation of the bar growing, or false to deactivate.
+                          animate: 1000,
+                          // Callback function that is called at the start of any animation (only if animate is not false).
+                          onStart: $.noop,
+                          // Callback function that is called at the end of any animation (only if animate is not false).
+                          onStop: $.noop
+                      });
+                  });
+              </script>
+            </div>
+
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+
+<script>
+  function newReview(id) {
+      $('#modal1').modal();
+      alert(id);
+  }
+</script>

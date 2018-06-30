@@ -1,0 +1,32 @@
+<% if comment.commenter %>
+    <div class="col s12">
+      <!--<h2 class="header">Horizontal Card</h2>-->
+      <div class="card horizontal">
+        <div style="padding: 1%">
+
+          <div class="card-image">
+            <span>
+             <p> <%= image_tag 'male1.png', width: '64px', height: '64px' %><%= comment.commenter.name %></p>
+            </span>
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p><%= comment.content %></p>
+
+              <% comment.comments.each do |c| %>
+                <%= render c %>
+              <% end %>
+
+
+            </div>
+            <div class="card-action">
+              <% if authenticated_user %>
+                  <%= render 'comments/form', comment: comment.comments.new %>
+                  <%= render 'likes/form', likeable: comment %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
