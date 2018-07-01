@@ -8,6 +8,8 @@
 
 
 AdminUser.create!(email: 'admin@mp.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+
+puts('Admin Created')
 # genres = Tmdb::Genre.movie_list
 # genres.each do |genre|
 #   Tag.create(id: genre.id,value: genre.name)
@@ -28,11 +30,12 @@ roles.each do |role|
 end
 puts("Extracted ids #{ids}")
 
-3.times do |i|
-  tech = Technician.create(name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "tech#{i}@gmail.com",
-                        password: '123456', password_confirmation: '123456')
+t = rand(10..50)
 
+t.times do |i|
+  tech = Technician.create(name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "tech#{i}@gmail.com")
 end
+puts('Created technicians')
 
 ids.each do |id|
   genre_ids = []
@@ -41,6 +44,7 @@ ids.each do |id|
   genres = movie.genres
   puts(genres)
   companies = movie.production_companies
+  puts(companies)
   genres.each do |genre|
     genre_ids << genre.id
     gn = Tag.find_or_create_by(id: genre.id, value: genre.name)
@@ -68,10 +72,28 @@ ids.each do |id|
   mt.save
 end
 
-t = rand(10)
+Technician.all.each do |technician|
+  m = Role.all.count
+  rand(1..m).times do |i|
+    technician.roles<<Role.find(rand(1..m))
+    technician.save
+  end
+end
+
+t = rand(10..50)
 
 t.times do |i|
   tech = User.create(name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: "user#{i}@gmail.com",
                            password: '123456', password_confirmation: '123456')
+end
 
+puts('User Created')
+
+t = User.all.count
+
+rand(5..t).times do |i|
+  puts(i)
+  rand(i..t).times do |j|
+    User.find(i+1).follow(User.find(j+1))
+  end
 end

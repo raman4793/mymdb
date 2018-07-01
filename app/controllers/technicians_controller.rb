@@ -7,6 +7,6 @@ class TechniciansController < ApplicationController
 
   def index
     @search = Technician.search(params[:q])
-    @technicians = @search.result.page(params[:page]).per(10)
+    @technicians = @search.result.page(params[:page]).per(6)
   end
 end

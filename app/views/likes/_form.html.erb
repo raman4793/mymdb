@@ -1,6 +1,6 @@
-<% if authenticated_user %>
-    <% if authenticated_user.likes?(likeable) %>
-        <%= render 'likes/dislike', like: likeable.by(authenticated_user) %>
+<% if current_user %>
+    <% if current_user.likes?(likeable) %>
+        <%= render 'likes/dislike', like: likeable.by(current_user) %>
     <% else %>
         <%= render 'likes/like', like: likeable.likes.new %>
     <% end %>

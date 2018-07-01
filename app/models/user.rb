@@ -7,13 +7,13 @@ class User < ApplicationRecord
   mount_uploader :profile_pic, AvatarUploader
   mount_uploader :background_pic, BackgroundUploader
 
-  has_many :reviews, as: :reviewer
+  has_many :reviews, as: :reviewer, dependent: :destroy
 
-  has_many :comments, as: :commenter
+  has_many :comments, as: :commenter, dependent: :destroy
 
-  has_many :likes, as: :liker
+  has_many :likes, as: :liker, dependent: :destroy
 
-
+  has_and_belongs_to_many :tags, dependent: :destroy
 
   has_many :conversations, as: :sendable, dependent: :destroy
   has_many :conversations, as: :recipientable, dependent: :destroy
@@ -22,6 +22,10 @@ class User < ApplicationRecord
   ratyrate_rater
   acts_as_followable
   acts_as_follower
+
+  def blocked?(user)
+      self.blocks.include?(user)
+  end
 
   def likes?(likeable)
     !likes.where(likeable: likeable).empty?
@@ -61,5 +65,38 @@ class User < ApplicationRecord
     puts("Loading conversations of current_user")
     Conversation.where({recipientable: self}).or(Conversation.where({sendable: self}))
     # Conversation.where("recipientable_type LIKE 'User' AND recipientable_id=#{self.id} OR sendable_type LIKE 'User' AND sendable_id=#{self.id}")
+  end
+
+  def get_liked_movies
+    likes.where(likeable_type: 'Movie')
+  end
+
+  def get_liked_movie_list
+    ids = get_liked_movies.pluck(:likeable_id)
+    Movie.find(ids)
+  end
+
+  def get_recommendations
+    liked_movies = get_liked_movies
+    ids = liked_movies.pluck(:id)
+    movies = nil
+    if ids.empty?
+      movies = Movie.all
+    else
+      movies = Movie.all.where('id NOT IN (?)', ids)
+    end
+    recommendations = []
+    movies.each do |movie|
+      intersection = movie.tags & self.tags
+      puts("Movie Tags")
+      pp(movie.tags)
+      puts("My Tags")
+      pp(self.tags)
+      puts "Intersection : #{intersection}"
+      if intersection.length >= 1
+        recommendations << movie
+      end
+    end
+    recommendations
   end
 end

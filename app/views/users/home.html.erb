@@ -5,15 +5,15 @@
       <!-- profile-page-header -->
       <div id="profile-page-header" class="card">
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="<%= image_path @user.background_pic %>" alt="user background">
+          <img class="activator" src="<%= image_path current_user.background_pic %>" alt="user background">
         </div>
         <figure class="card-profile-image">
-          <img src="<%= image_path @user.profile_pic %>" alt="profile image" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">
+          <img src="<%= image_path current_user.profile_pic %>" alt="profile image" class="circle z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">
         </figure>
         <div class="card-content">
           <div class="row pt-2">
             <div class="col s12 m3 offset-m2">
-              <h4 class="card-title grey-text text-darken-4"><%= @user.name %></h4>
+              <h4 class="card-title grey-text text-darken-4"><%= current_user.name %></h4>
               <p class="medium-small grey-text"></p>
             </div>
             <div class="col s12 m2 center-align">
@@ -25,20 +25,15 @@
             <div class="col s12 m2 center-align">
 
             </div>
-            <% if current_user && current_user != @user %>
-              <div class="col s12 m1 right-align">
-                <%= render 'relationships/form', user: @user %>
-              </div>
-            <% end %>
           </div>
         </div>
         <div class="card-reveal">
           <p>
-                    <span class="card-title grey-text text-darken-4"><%= @user.name %>
+                    <span class="card-title grey-text text-darken-4"><%= current_user.name %>
                       <i class="material-icons right">close</i>
                     </span>
             <span>
-                      <i class="material-icons cyan-text text-darken-2">perm_identity</i><%= @user.created_at %></span>
+                      <i class="material-icons cyan-text text-darken-2">perm_identity</i><%= current_user.created_at %></span>
           </p>
           <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
           <p>
@@ -60,14 +55,14 @@
           <div class="card cyan">
             <div class="card-content white-text">
               <span class="card-title">About Me!</span>
-              <p><%= @user.description %></p>
+              <p><%= current_user.description %></p>
             </div>
           </div>
           <!-- Profile About  -->
           <div class="card red accent-2">
             <div class="card-content white-text center-align">
               <p class="card-title">
-                <i class="material-icons">group_add</i> <%= @user.followers.count %></p>
+                <i class="material-icons">group_add</i> <%= current_user.followers.count %></p>
               <p><%= link_to 'Followers', relationships_path %></p>
             </div>
           </div>
@@ -76,23 +71,24 @@
         <!-- profile-page-sidebar-->
         <!-- profile-page-wall -->
         <div id="profile-page-wall" class="col s12 m8">
-          <!-- profile-page-wall-posts -->
-          <div id="profile-page-wall-posts" class="row">
+
+
+          <div class="row">
             <div class="col s12">
-
-
               <div class="row">
                 <div class="col s12">
                   <ul class="tabs tab-demo z-depth-1">
-                    <li class="tab col s3"><a class="active" href="#test1">Liked Movies</a>
+                    <li class="tab col s3"><a class="active" href="#test1">Recommended Movies</a>
                     </li>
-                    <li class="tab col s3"><a href="#test2">Reviews</a>
+                    <li class="tab col s3"><a href="#test2">Liked Movies</a>
+                    </li>
+                    <li class="tab col s3"><a href="#test3">Reviews</a>
                     </li>
                     <li class="indicator" style="right: 743px; left: 0px;"></li></ul>
                 </div>
                 <div class="col s12">
-                  <div id="test1" class="col s12" style="display: none;">
-                    <% @user.get_liked_movie_list.each do |movie| %>
+                  <div id="test1" class="col s12 active">
+                    <% current_user.get_recommendations.each do |movie| %>
 
                       <div class="col s4">
 
@@ -139,7 +135,54 @@
                     <% end %>
                   </div>
                   <div id="test2" class="col s12" style="display: none;">
-                    <% @user.reviews.each do |review| %>
+                    <% current_user.get_liked_movie_list.each do |movie| %>
+
+                      <div class="col s4">
+
+                        <div class="item product">
+                          <div class="card" style="max-height: 465px">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <a href="#">
+                                <%= image_tag poster(movie.poster_path) %>
+                              </a>
+                            </div>
+                            <ul class="card-action-buttons">
+                              <li>
+                                <%= render 'likes/form', likeable: movie %>
+
+                              </li>
+                              <li>
+                                <a class="btn-floating waves-effect waves-light deep-orange accent-2">
+                                  <i class="material-icons activator">info_outline</i>
+                                </a>
+                              </li>
+                            </ul>
+                            <div class="card-content">
+                              <div class="row">
+                                <div class="col s12">
+                                  <p class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4"><b><%= link_to movie.title, movie_url(movie) %></b></a>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">
+                        <i class="material-icons right">close</i>
+                        <h5><%= link_to movie.title, movie_url(movie) %></h5><br>
+                        <span style="font-size: 0.8em; color: #ee6e73"><%= movie.release_date.strftime("%B %d, %Y") %></span>
+                      </span>
+                              <p><%= movie.overview  %></p>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                    <% end %>
+                  </div>
+                  <div id="test3" class="col s12" style="display: none;">
+                    <% current_user.reviews.each do |review| %>
                       <div class="card">
                         <h3>Review on <%= review.movie.title %></h3>
                         <%= raw review.content %>
@@ -148,12 +191,10 @@
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
-          <!--/ profile-page-wall-posts -->
+
+
         </div>
         <!--/ profile-page-wall -->
       </div>

@@ -64,4 +64,6 @@ ActiveAdmin.register Movie do
     end
   end
 
+
+
 end

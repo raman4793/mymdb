@@ -2,13 +2,19 @@ Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
 
+  get 'relationships/block/:id' => 'relationships#block', :as => 'block'
+
+  get 'relationships/unblock/:id' => 'relationships#unblock', :as => 'unblock'
+
   devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions'
   }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root "movies#index"
+
+
+  get 'relationships/', to: "relationships#index", as: :relationships
 
   resources :movies
   resources :reviews
@@ -22,7 +28,13 @@ Rails.application.routes.draw do
 
   mount Thredded::Engine => '/forum'
 
+  authenticated :user do
+    root to: 'users#home'
+  end
 
+  unauthenticated do
+    root to: 'movies#index'
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

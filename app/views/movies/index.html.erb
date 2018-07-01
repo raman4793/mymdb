@@ -11,6 +11,11 @@
         <% end %>
       </div>
     </div>
+
+    <div>
+      <%= paginate @movies %>
+    </div>
+
     <div id="item-posts" class="row">
       <div class="item-sizer"></div>
       <% @movies.each do |movie| %>
@@ -31,11 +36,6 @@
                   </a>
                 </div>
                 <ul class="card-action-buttons">
-                  <li>
-                    <a data-id="<%= movie.id %>" href="#modal1" class="btn-floating waves-effect waves-light cyan" onclick="newReview(<%= movie.id %>)">
-                      <i class="material-icons">add</i>
-                    </a>
-                  </li>
                   <li>
                     <%= render 'likes/form', likeable: movie %>
 
@@ -98,19 +98,4 @@
 
 </div>
 
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
-
-<script>
-  function newReview(id) {
-      $('#modal1').modal();
-      alert(id);
-  }
-</script>
+<%= paginate @movies %>

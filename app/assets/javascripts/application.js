@@ -15,4 +15,5 @@
 //= require jquery.raty
 //= require ratyrate
 //= require easypiechart
+//= require froala_editor.min.js
 //= require_tree .

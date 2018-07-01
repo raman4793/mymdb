@@ -1,17 +1,18 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo" style="padding-left: 1%">Movie Portal</a>
+    <a href="<%= root_url %>" class="brand-logo" style="padding-left: 1%">Movie Portal</a>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
 
     </ul>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><%= link_to 'Forum', thredded_path %></li>
       <li><%= link_to 'Find technicians', technicians_path %></li>
       <li><%= link_to 'Find users', users_path %></li>
       <li><%= link_to 'Messages', conversations_path %></li>
       <li><%= link_to 'Browse Movies', movies_path %></li>
       <li><%= link_to 'Edit profile details', edit_user_registration_path %></li>
-      <li><%= link_to "User Sign Out", destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to "#{current_user.name} Sign Out", destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>
 </nav>

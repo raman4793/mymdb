@@ -6,12 +6,12 @@
 
           <div class="card-image">
             <span>
-             <p> <%= image_tag 'male1.png', width: '64px', height: '64px' %><%= review.reviewer.name %></p>
+             <p> <%= image_tag review.reviewer.profile_pic, width: '64px', height: '64px' %><%= review.reviewer.name %></p>
             </span>
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <p><%= review.content %></p>
+              <p><%= raw review.content %></p>
             </div>
             <div class="card-action">
               <% if authenticated_user %>
@@ -20,7 +20,11 @@
               <% end %>
             </div>
 
-
+            <div class="card">
+              <% review.comments.each do |comment| %>
+                <%= render comment %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

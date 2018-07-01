@@ -5,25 +5,23 @@ class Technician < ApplicationRecord
   mount_uploader :profile_pic, AvatarUploader
   mount_uploader :background_pic, BackgroundUploader
 
-  has_many :reviews, as: :reviewer
+  has_many :reviews, as: :reviewer, dependent: :destroy
 
-  has_many :roles, through: :technician_roles
+  has_many :roles, through: :technician_roles, dependent: :destroy
 
   has_many :technician_roles, dependent: :destroy
 
-  has_many :movie_technicians
+  has_many :movie_technicians, dependent: :destroy
 
-  has_many :comments, as: :commenter
+  has_many :comments, as: :commenter, dependent: :destroy
 
-  has_many :likes, as: :liker
+  has_many :likes, as: :liker, dependent: :destroy
 
   has_many :conversations, as: :sendable, dependent: :destroy
   has_many :conversations, as: :recipientable, dependent: :destroy
   has_many :messages, as: :sendable, dependent: :destroy
 
   ratyrate_rater
-  acts_as_followable
-  acts_as_follower
 
 
   def likes?(likeable)

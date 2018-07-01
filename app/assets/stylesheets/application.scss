@@ -22,16 +22,18 @@
 }
 
 .content_area{
-  padding: 4%;
+  padding: 2%;
 }
 
 .profile-page-wall-post{
   padding: 2%;
 }
 
-.content_area{
-}
 
 .alert{
   z-index: 999;
 }
+@import "froala_editor.min";
+@import "froala_style.min";
+@import "font-awesome-sprockets";
+@import "font-awesome";

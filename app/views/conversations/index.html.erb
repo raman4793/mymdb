@@ -19,22 +19,24 @@
   <div class="col s12">
 
     <div id="email-list" class="col s10 m4 l4 card-panel z-depth-1">
-      <ul class="collection">
+      <div class="scroll-box">
+        <ul class="collection">
 
-        <% @conversations.each do |conversation| %>
+          <% @conversations.each do |conversation| %>
 
-          <li id="conversation-<%= conversation.id %>" class="collection-item avatar email-unread" onclick="loadMessage('<%= conversation_url(conversation) %>', <%= conversation.id %>);">
+            <li id="conversation-<%= conversation.id %>" class="collection-item avatar email-unread" onclick="loadMessage('<%= conversation_url(conversation) %>', <%= conversation.id %>);">
 
-            <span class="email-title"><%= image_tag 'avatar-1.png', width: 48, height: 48 %> <%= conversation.other(current_user).name %></span>
-            <p class="truncate grey-text ultra-small"><%= conversation.messages.last.content %></p>
+              <span class="email-title"><%= image_tag 'avatar-1.png', width: 48, height: 48 %> <%= conversation.other(current_user).name %></span>
+              <p class="truncate grey-text ultra-small"><%= conversation.messages.last.content %></p>
 
-          </li>
-        <% end %>
+            </li>
+          <% end %>
 
-      </ul>
+        </ul>
+      </div>
     </div>
     <div id="email-details" class="col s12 m7 l7 card-panel">
-      <div id="messages-areas">
+      <div id="messages-areas" style="height: 470px">
 
       </div>
     </div>

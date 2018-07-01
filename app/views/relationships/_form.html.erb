@@ -1,5 +1,10 @@
 <% if authenticated_user.following?(user) %>
     <%= render 'relationships/unfollow' %>
+    <% if current_user.blocked?(@user) %>
+      <%= render 'relationships/unblock', user: @user.id %>
+    <% else %>
+      <%= render 'relationships/block', user: @user.id %>
+    <% end %>
 <% else %>
     <%= render 'relationships/follow' %>
 <% end %>

@@ -13,17 +13,6 @@
 
       <div class="col s8">
         <h1><%= @movie.title %></h1>
-        <div class="controls">
-            <div>
-              <div class="user-rating">Rating</div>
-              <i class="material-icons">format_list_bulleted</i>
-              <i class="material-icons">sentiment_very_satisfied</i>
-              <i class="material-icons">watch_later</i>
-              <i class="material-icons">star</i>
-
-              <i class="material-icons">play_arrow</i>
-            </div>
-        </div>
 
         <div class="overview">
           <h5>
@@ -31,7 +20,11 @@
           </h5>
           <p><%= @movie.overview %></p>
         </div>
-        User Rating  : <%= rating_for @movie, 'quality', disable_after_rate: false %>
+        Direction : <%= rating_for @movie, 'direction', disable_after_rate: false, star: 10 %>
+        Story : <%= rating_for @movie, 'story', disable_after_rate: false, star: 10 %>
+        Script : <%= rating_for @movie, 'script', disable_after_rate: false, star: 10 %>
+        Camera : <%= rating_for @movie, 'camera', disable_after_rate: false, star: 10 %>
+        Overall rating : <%= rating_for @movie, 'quality', disable_after_rate: false, star: 10 %>
       </div>
   </div>
 
@@ -84,15 +77,12 @@
         <div class="col s12 m12 l12">
           <div class="row">
             <% @movie.movie_technicians.each do |technician| %>
-            <div class="col s12 m6 l6">
+            <div class="col s12 m3 l3">
               <div class="card horizontal">
                 <div class="card-image">
-                  <%= image_tag 'avatar-1.png' %>
+                  <%= image_tag technician.technician.profile_pic, width: 128, height: 128 %>
                 </div>
                 <div class="card-stacked">
-                  <div class="card-content">
-                    <p>I am a very simple card with link. I am good at containing small bits of information.</p>
-                  </div>
                   <div class="card-action">
                     <a href="<%= technician_path(technician.technician) %>"><%= technician.technician.name %></a>
                     <%= technician.role.name %>
@@ -126,6 +116,3 @@
         $('ul.tabs').tabs();
     });
 </script>
-
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
